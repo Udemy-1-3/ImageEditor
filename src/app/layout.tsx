@@ -17,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <GlobalStyle></GlobalStyle>
       <html>
         <body>
+          <div id="modal"></div>
           <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
         </body>
       </html>

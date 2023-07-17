@@ -1,5 +1,5 @@
 'use client';
-
+import Header from './components/Header';
 import styled from 'styled-components';
 
 const StyledButton = styled.p`
@@ -20,6 +20,7 @@ export default function Home() {
   return (
     <>
       <StyledButton>테스트</StyledButton>
+      <Header></Header>
     </>
   );
 }

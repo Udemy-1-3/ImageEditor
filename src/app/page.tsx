@@ -1,6 +1,10 @@
 'use client';
-
 import styled from 'styled-components';
+import CheckBox from "./components/CheckBox";
+import Chip from './components/Chip';
+import React, { useState } from 'react';
+import Tab from './components/Tab';
+
 
 const StyledButton = styled.p`
   background-color: #007bff;
@@ -16,10 +20,24 @@ const StyledButton = styled.p`
   }
 `;
 
+const TabContainer = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+
+
+
+
 export default function Home() {
+  const [activeTab, setActiveTab] = useState<number>(1);
   return (
     <>
-      <StyledButton>테스트</StyledButton>
+      <StyledButton>컴포넌트 결과</StyledButton>
+      <CheckBox></CheckBox>
+      <Chip text="회사소개" href="https://company.wjthinkbig.com/company/introduce.do"/>
+      <Tab></Tab>
+  
     </>
   );
 }

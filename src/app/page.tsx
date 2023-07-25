@@ -1,10 +1,6 @@
 'use client';
 
 import styled from 'styled-components';
-import CheckBox from '../compoenets/CheckBox';
-import Chip from '../compoenets/Chip';
-import React, { useState } from 'react';
-import Tab from '../compoenets/Tab';
 
 const StyledButton = styled.p`
   background-color: #007bff;
@@ -18,11 +14,6 @@ const StyledButton = styled.p`
   &:hover {
     background-color: #0056b3;
   }
-`;
-
-const TabContainer = styled.div`
-  display: flex;
-  gap: 20px;
 `;
 
 export default function Home() {

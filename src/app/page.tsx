@@ -1,4 +1,6 @@
 'use client';
+
+
 import styled from 'styled-components';
 import CheckBox from "./components/CheckBox";
 import Chip from './components/Chip';
@@ -30,14 +32,10 @@ const TabContainer = styled.div`
 
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<number>(1);
+
   return (
     <>
-      <StyledButton>컴포넌트 결과</StyledButton>
-      <CheckBox></CheckBox>
-      <Chip text="회사소개" href="https://company.wjthinkbig.com/company/introduce.do"/>
-      <Tab></Tab>
-  
+      <StyledButton>테스트</StyledButton>
     </>
   );
 }

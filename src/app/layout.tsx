@@ -20,6 +20,7 @@ export default function RootLayout({
       <GlobalStyle></GlobalStyle>
       <html>
         <body>
+          <div id="modal"></div>
           <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
         </body>
       </html>

@@ -1,12 +1,10 @@
 'use client';
 
-
 import styled from 'styled-components';
-import CheckBox from "./components/CheckBox";
-import Chip from './components/Chip';
+import CheckBox from '../compoenets/CheckBox';
+import Chip from '../compoenets/Chip';
 import React, { useState } from 'react';
-import Tab from './components/Tab';
-
+import Tab from '../compoenets/Tab';
 
 const StyledButton = styled.p`
   background-color: #007bff;
@@ -27,12 +25,7 @@ const TabContainer = styled.div`
   gap: 20px;
 `;
 
-
-
-
-
 export default function Home() {
-
   return (
     <>
       <StyledButton>테스트</StyledButton>

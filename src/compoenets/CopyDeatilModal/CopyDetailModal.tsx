@@ -1,23 +1,21 @@
 import styled from 'styled-components';
 import CopyDetailModalBtn from './CopyDetailModalBtn';
 import CopyDetailModalInput from './CopyDetailModalInput';
-import { createPortal } from 'react-dom';
+import ModalBackground from '../ModalBackground';
 
 const CopyDetailModal = ({
   isOpen,
-  onClose,
+  onModalBtnClose,
   type,
   url,
 }: {
+  isOpen: boolean;
   type: 'copy' | 'detail';
   url: string;
-  isOpen: boolean;
-  onClose: () => void;
+  onModalBtnClose: () => void;
 }) => {
-  if (!isOpen) return null;
-
-  return createPortal(
-    <ModalSection>
+  return (
+    <ModalBackground isOpen={isOpen}>
       <ModalWrapper>
         <ModalMain>
           <ModalTitle>{type === 'copy' ? '페이지 복제' : '페이지 상세'}</ModalTitle>
@@ -29,25 +27,15 @@ const CopyDetailModal = ({
         </ModalMain>
 
         <BtnWrapper>
-          <CopyDetailModalBtn onClose={onClose} type="close"></CopyDetailModalBtn>
-          <CopyDetailModalBtn onClose={onClose} type="confirm"></CopyDetailModalBtn>
+          <CopyDetailModalBtn onClose={onModalBtnClose} type="close"></CopyDetailModalBtn>
+          <CopyDetailModalBtn onClose={onModalBtnClose} type="confirm"></CopyDetailModalBtn>
         </BtnWrapper>
       </ModalWrapper>
-    </ModalSection>,
-    document.getElementById('modal') as HTMLElement,
+    </ModalBackground>
   );
 };
 
 export default CopyDetailModal;
-
-const ModalSection = styled.section`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-`;
 
 const ModalWrapper = styled.div`
   position: absolute;

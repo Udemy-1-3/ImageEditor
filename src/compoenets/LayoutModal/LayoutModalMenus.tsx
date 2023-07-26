@@ -12,7 +12,7 @@ const LayoutModalMenus = ({
   return (
     <Menus>
       {menus.map((menu, idx) => (
-        <Menu onClick={() => onClickMenu(menu)} isSelectedMenu={menu === selectedMenu} key={idx}>
+        <Menu onClick={() => onClickMenu(menu)} $isSelectedMenu={menu === selectedMenu} key={idx}>
           {menu}
         </Menu>
       ))}
@@ -26,9 +26,9 @@ const Menus = styled.div`
   cursor: pointer;
 `;
 
-const Menu = styled.p<{ isSelectedMenu: boolean }>`
+const Menu = styled.p<{ $isSelectedMenu: boolean }>`
   font-weight: 500;
-  color: ${(props) => (props.isSelectedMenu ? props.theme.colors.primary100 : 'black')};
+  color: ${(props) => (props.$isSelectedMenu ? props.theme.colors.primary100 : 'black')};
   font-size: 18px;
 
   line-height: 21.48px;

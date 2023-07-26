@@ -40,7 +40,7 @@ const LAYOUT_MENUS_INFO: { [key: string]: BlockDesingI[] } = {
         bold: true,
         color: '#EE7D00',
       },
-      describe: '주1회/과목당 10분 <br/> 학습관리 및 상담',
+      describe: '주1회/과목당10 학습관리 및 상담',
     },
     {
       blockDesignType: 'rectBig',

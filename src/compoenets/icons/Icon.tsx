@@ -1,4 +1,4 @@
-'use client';
+import styled from 'styled-components';
 
 import Arrow from '../../../public/images/icons/arrow.svg';
 import Close from '../../../public/images/icons/close.svg';
@@ -29,7 +29,15 @@ const Icon = ({
 }) => {
   const SelectedIcon = ICONS[icon];
 
-  return <SelectedIcon width={width} hegiht={height} fill={color ? color : 'black'}></SelectedIcon>;
+  return (
+    <Wrapper>
+      <SelectedIcon width={width} hegiht={height} fill={color ? color : 'black'}></SelectedIcon>
+    </Wrapper>
+  );
 };
 
 export default Icon;
+
+const Wrapper = styled.div`
+  cursor: pointer;
+`;

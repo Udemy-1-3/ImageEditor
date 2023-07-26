@@ -1,43 +1,35 @@
 'use client';
-import Image from 'next/image';
-import styled from 'styled-components';
 
-const COMMONPATH = `images/icons`;
+import Arrow from '../../../public/images/icons/arrow.svg';
+import Close from '../../../public/images/icons/close.svg';
+import Desktop from '../../../public/images/icons/desktop.svg';
+import Mobile from '../../../public/images/icons/mobile.svg';
+import Setting from '../../../public/images/icons/setting.svg';
+import Tablet from '../../../public/images/icons/tablet.svg';
 
-interface IconWrapperProps {
-  width?: number;
-  height?: number;
-}
-
-const ICONPATHS: { [key: string]: string } = {
-  arrow: `${COMMONPATH}/arrow.svg`,
-  close: `${COMMONPATH}/close.svg`,
-  desktop: `${COMMONPATH}/desktop.svg`,
-  mobile: `${COMMONPATH}/mobile.svg`,
-  setting: `${COMMONPATH}/setting.svg`,
-  tablet: `${COMMONPATH}/tablet.svg`,
+const ICONS: { [key: string]: any } = {
+  arrow: Arrow,
+  close: Close,
+  desktop: Desktop,
+  mobile: Mobile,
+  setting: Setting,
+  tablet: Tablet,
 };
 
-const Icon = ({ icon, width, height }: { icon: string; width?: number; height?: number }) => {
-  return (
-    <ICONWRAPPER width={width} height={height}>
-      <Image
-        alt="icon"
-        width={width ? width : 45}
-        height={height ? height : 45}
-        src={ICONPATHS[icon]}
-      ></Image>
-    </ICONWRAPPER>
-  );
+const Icon = ({
+  icon,
+  width,
+  height,
+  color,
+}: {
+  icon: string;
+  width: number;
+  height: number;
+  color?: string;
+}) => {
+  const SelectedIcon = ICONS[icon];
+
+  return <SelectedIcon width={width} hegiht={height} fill={color ? color : 'black'}></SelectedIcon>;
 };
 
 export default Icon;
-
-const ICONWRAPPER = styled.div<IconWrapperProps>`
-  width: ${(props) => (props.width ? props.width + 'px' : '45px')};
-  height: ${(props) => (props.height ? props.height + 'px' : '45px')};
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`;

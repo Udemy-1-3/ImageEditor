@@ -58,7 +58,7 @@ const LAYOUT_MENUS_INFO: { [key: string]: BlockDesingI[] } = {
 };
 const LAYOUT_MENUS = Object.keys(LAYOUT_MENUS_INFO);
 
-const LayoutModal = ({ isOpen }: { isOpen: boolean }) => {
+const LayoutModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: Function }) => {
   const [selecttedMenu, setSelectedMenu] = useState(LAYOUT_MENUS[0]);
 
   const handleMenu = (menu: string) => {
@@ -70,7 +70,9 @@ const LayoutModal = ({ isOpen }: { isOpen: boolean }) => {
       <ModalWrapper>
         <ModalHead>
           <h1>블록 디자인 추가</h1>
-          <Icon color="#FFFFFF" width={26} height={26} icon="close"></Icon>
+          <div onClick={() => onClose(false)}>
+            <Icon color="#FFFFFF" width={26} height={26} icon="close"></Icon>
+          </div>
         </ModalHead>
 
         <ModalMain>

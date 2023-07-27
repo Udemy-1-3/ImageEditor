@@ -2,9 +2,7 @@
 
 import styled from 'styled-components';
 import CheckBox from '../compoenets/CheckBox';
-import Chip from '../compoenets/Chip';
-import React, { useState } from 'react';
-import Tab from '../compoenets/Tab';
+
 
 const StyledButton = styled.p`
   background-color: #007bff;
@@ -27,8 +25,8 @@ const TabContainer = styled.div`
 
 export default function Home() {
   return (
-    <>
+    <div>
       <StyledButton>테스트</StyledButton>
-    </>
+    </div>
   );
 }

@@ -18,8 +18,8 @@ const StyledButton = styled.p`
 
 export default function Home() {
   return (
-    <>
+    <div>
       <StyledButton>테스트</StyledButton>
-    </>
+    </div>
   );
 }

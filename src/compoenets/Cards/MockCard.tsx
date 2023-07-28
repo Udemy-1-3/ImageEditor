@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-// type Shapes = 'rectNormal' | 'rectBig' | 'rectSmall' | 'round';
-
 type TitleStyleType = {
   color?: string;
-  text: string;
+  text?: string;
   bold?: boolean;
 };
 
@@ -23,12 +21,12 @@ type WrapperProps = Pick<CardShapeEProps, 'width'>;
 
 type TitleProps = Pick<TitleStyleType, 'bold' | 'color'>;
 
-const Card = ({ type, titleStyle, describe }: DefaultProps) => {
+const MockCard = ({ type, titleStyle, describe }: DefaultProps) => {
   const getShapeStyle = (type: string) => {
-    if (type === 'rectNormal') return { width: 192, height: 182 };
-    if (type === 'rectBig') return { width: 360, height: 270 };
-    if (type === 'rectSmall') return { width: 157, height: 157 };
-    if (type === 'round') return { width: 157, height: 157, borderRadius: 100 };
+    if (type === 'rectSmall') return { width: 72, height: 68 };
+    if (type === 'rectBig') return { width: 124, height: 66 };
+    if (type === 'rectNormal') return { width: 157, height: 58 };
+    if (type === 'round') return { width: 85, height: 85, borderRadius: 100 };
     throw new Error(`유효하지 않은 type: ${type}`);
   };
 
@@ -38,7 +36,6 @@ const Card = ({ type, titleStyle, describe }: DefaultProps) => {
     ?.split('<br/>')
     .map((line, idx) => <DESCRIBE key={idx}>{line}</DESCRIBE>);
 
-  console.log(splitedDescribe, 'hi');
   return (
     <WRAPPER width={shapeStyleValues.width}>
       <CARDSHAPE
@@ -55,25 +52,26 @@ const Card = ({ type, titleStyle, describe }: DefaultProps) => {
   );
 };
 
-export default Card;
+export default MockCard;
 
 const WRAPPER = styled.div<WrapperProps>`
   width: ${(props) => props.width + 'px'};
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 6px;
   text-align: center;
 `;
 
 const CARDSHAPE = styled.div<CardShapeEProps>`
   width: ${(props) => props.width + 'px'};
   height: ${(props) => props.height + 'px'};
-  background-color: #f0f0f0;
+  background-color: #f3f3f3;
   border-radius: ${(props) => props.borderRadius + '%'};
 `;
 
 const TITLE = styled.h1<TitleProps>`
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  font-size: 12px;
   color: ${(props) => (props.color ? props.color : 'black')};
   font-weight: ${(props) => (props.bold ? 'bold' : 400)};
 `;
@@ -82,7 +80,7 @@ const DESCRIBEWRAPPER = styled.div``;
 
 const DESCRIBE = styled.p`
   font-weight: 350;
-  font-size: 15px;
-  line-height: 24px;
-  text-align: left;
+  font-size: 6px;
+  line-height: 10.14px;
+  text-align: center;
 `;

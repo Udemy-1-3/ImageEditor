@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-type Shapes = 'rectNormal' | 'rectBig' | 'rectSmall' | 'round';
+// type Shapes = 'rectNormal' | 'rectBig' | 'rectSmall' | 'round';
 
 type TitleStyleType = {
   color?: string;
@@ -9,7 +9,7 @@ type TitleStyleType = {
 };
 
 interface DefaultProps {
-  type: Shapes;
+  type: string;
   titleStyle?: TitleStyleType;
   describe?: string;
 }
@@ -24,7 +24,7 @@ type WrapperProps = Pick<CardShapeEProps, 'width'>;
 type TitleProps = Pick<TitleStyleType, 'bold' | 'color'>;
 
 const Card = ({ type, titleStyle, describe }: DefaultProps) => {
-  const getShapeStyle = (type: Shapes) => {
+  const getShapeStyle = (type: string) => {
     if (type === 'rectNormal') return { width: 192, height: 182 };
     if (type === 'rectBig') return { width: 360, height: 270 };
     if (type === 'rectSmall') return { width: 157, height: 157 };

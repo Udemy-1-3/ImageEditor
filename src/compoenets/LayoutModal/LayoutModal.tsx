@@ -58,7 +58,15 @@ const LAYOUT_MENUS_INFO: { [key: string]: BlockDesingI[] } = {
 };
 const LAYOUT_MENUS = Object.keys(LAYOUT_MENUS_INFO);
 
-const LayoutModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: Function }) => {
+const LayoutModal = ({
+  isOpen,
+  onClose,
+  addLayout,
+}: {
+  addLayout: Function;
+  isOpen: boolean;
+  onClose: Function;
+}) => {
   const [selecttedMenu, setSelectedMenu] = useState(LAYOUT_MENUS[0]);
 
   const handleMenu = (menu: string) => {
@@ -85,7 +93,13 @@ const LayoutModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: Function }
           </ModalMenusWrapper>
           <LayoutItemContainerWrapper>
             {LAYOUT_MENUS_INFO[selecttedMenu].map((layoutItem, idx) => {
-              return <LayoutItemContainer layoutItem={layoutItem} key={idx}></LayoutItemContainer>;
+              return (
+                <LayoutItemContainer
+                  onClick={addLayout}
+                  layoutItem={layoutItem}
+                  key={idx}
+                ></LayoutItemContainer>
+              );
             })}
           </LayoutItemContainerWrapper>
         </ModalMain>

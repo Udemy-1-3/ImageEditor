@@ -2,20 +2,28 @@ import { styled } from 'styled-components';
 import { BlockDesingI } from './LayoutModal';
 import MockCard from '../Cards/MockCard';
 
-const LayoutItemContainer = ({ layoutItem }: { layoutItem: BlockDesingI }) => {
+const LayoutItemContainer = ({
+  layoutItem,
+  onClick,
+}: {
+  layoutItem: BlockDesingI;
+  onClick: Function;
+}) => {
   const { title, describe, blockDesignType } = layoutItem;
 
   return (
     <Wrapper>
-      <MockCard
-        titleStyle={{
-          color: title?.color,
-          text: title?.text,
-          bold: title?.bold,
-        }}
-        type={blockDesignType}
-        describe={describe}
-      ></MockCard>
+      <div onClick={() => onClick(blockDesignType)}>
+        <MockCard
+          titleStyle={{
+            color: title?.color,
+            text: title?.text,
+            bold: title?.bold,
+          }}
+          type={blockDesignType}
+          describe={describe}
+        ></MockCard>
+      </div>
     </Wrapper>
   );
 };

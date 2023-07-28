@@ -27,7 +27,7 @@ const NewModalContainer = styled.div`
   }
 
   button {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 `;
 
@@ -56,11 +56,13 @@ interface NewModalProps {
     };
   
     const handleConfirm = () => {
-      if (selectedBlock && selectedImage) {
-        onConfirm(selectedBlock, selectedImage);
-        toggleNewModal();
-      }
-    };
+        if (selectedBlock && selectedImage) {
+          onConfirm(selectedBlock, selectedImage); // 선택한 블록의 ID와 이미지 데이터 전달
+          toggleNewModal();
+        }
+      };
+
+    console.log(selectedImage, "확인");
   
     return (
       newModalOpen && (

@@ -52,8 +52,12 @@ const LAYOUT_MENUS_INFO: { [key: string]: BlockDesingI[] } = {
         '북패드 디지털 콘텐츠를 활용하여 학생들의 지면 학습을 더욱 심도 깊고 쉽게 이해하여 기본 개념을 탄탄하게 합니다.',
     },
   ],
-  텍스트: [{ blockDesignType: 'rectNormal' }],
-  표: [{ blockDesignType: 'rectNormal' }],
+  '텍스트': [
+    { blockDesignType: 'textLayout1' },
+    { blockDesignType: 'textLayout2' },
+    { blockDesignType: 'textLayout3' },
+    { blockDesignType: 'textLayout4' },
+  ],  표: [{ blockDesignType: 'rectNormal' }],
   레이아웃: [{ blockDesignType: 'rectNormal' }],
 };
 const LAYOUT_MENUS = Object.keys(LAYOUT_MENUS_INFO);

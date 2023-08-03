@@ -57,8 +57,7 @@ export default function Home() {
             {section.layoutValues.length === 0 && '디자인을 선택해주세요'}
             {section.layoutValues &&
               section.layoutValues.map((layout, idx) => {
-                return <Card key={idx} titleStyle={{ text: '임시' }} type={layout} describe={section.someProperty}></Card>;
-
+                return <Card key={idx} titleStyle={{ text: '임시' }} type={layout}></Card>;
               })}
           </LayoutAndButton>
         ))}

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { ChangeEvent, useState } from 'react';
 
 // type Shapes = 'rectNormal' | 'rectBig' | 'rectSmall' | 'round';
 
@@ -18,18 +19,30 @@ interface CardShapeEProps {
   width: number;
   height: number;
   borderRadius?: number;
+  isImg :boolean;
 }
 type WrapperProps = Pick<CardShapeEProps, 'width'>;
 
 type TitleProps = Pick<TitleStyleType, 'bold' | 'color'>;
 
 const Card = ({ type, titleStyle, describe }: DefaultProps) => {
-  const getShapeStyle = (type: string) => {
+
+  const [selectedImageData, setSelectedImageData] = useState<string | null>(null);
+  const getShapeStyle = (type: Shapes) => {
+
     if (type === 'rectNormal') return { width: 192, height: 182 };
     if (type === 'rectBig') return { width: 360, height: 270 };
     if (type === 'rectSmall') return { width: 157, height: 157 };
     if (type === 'round') return { width: 157, height: 157, borderRadius: 100 };
     throw new Error(`유효하지 않은 type: ${type}`);
+  };
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = (e.target.files as FileList)[0];
+
+    const url = URL.createObjectURL(file)
+
+    setSelectedImageData(url)
   };
 
   const shapeStyleValues = getShapeStyle(type);
@@ -38,14 +51,22 @@ const Card = ({ type, titleStyle, describe }: DefaultProps) => {
     ?.split('<br/>')
     .map((line, idx) => <DESCRIBE key={idx}>{line}</DESCRIBE>);
 
-  console.log(splitedDescribe, 'hi');
-  return (
+  
+
+return (
     <WRAPPER width={shapeStyleValues.width}>
+
+      <CardInput onChange={handleImageChange} id="card" type='file'></CardInput>
       <CARDSHAPE
+      isImg={!!selectedImageData}
+      htmlFor='card' 
         borderRadius={shapeStyleValues.borderRadius}
         width={shapeStyleValues?.width}
         height={shapeStyleValues?.height}
-      ></CARDSHAPE>
+      >
+        <img src={selectedImageData?selectedImageData:''} alt='selectedImg'/>
+      </CARDSHAPE>
+
 
       <TITLE color={titleStyle?.color} bold={titleStyle?.bold}>
         {titleStyle?.text}
@@ -65,11 +86,25 @@ const WRAPPER = styled.div<WrapperProps>`
   text-align: center;
 `;
 
-const CARDSHAPE = styled.div<CardShapeEProps>`
+
+const CardInput = styled.input`
+  display: none;
+`
+
+const CARDSHAPE = styled.label<CardShapeEProps>`
   width: ${(props) => props.width + 'px'};
   height: ${(props) => props.height + 'px'};
   background-color: #f0f0f0;
   border-radius: ${(props) => props.borderRadius + '%'};
+
+  img{
+    object-fit: cover;
+    display: ${(props)=>props.isImg ? 'block':'none'};
+    width: 100%;
+    height: 100%;
+  border-radius: ${(props) => props.borderRadius + '%'};
+
+  }
 `;
 
 const TITLE = styled.h1<TitleProps>`
@@ -86,3 +121,5 @@ const DESCRIBE = styled.p`
   line-height: 24px;
   text-align: left;
 `;
+
+

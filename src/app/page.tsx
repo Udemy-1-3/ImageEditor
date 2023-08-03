@@ -67,6 +67,10 @@ export default function Home() {
       <LayoutModal addLayout={addLayout} onClose={setModal} isOpen={modal}></LayoutModal>
     </>
   );
+
+}
+
 }
 
 const MockInput = styled.input``;
+

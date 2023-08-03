@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import TextEditor from '../TextEditor/TextEditor';
+
+
+// type Shapes = 'rectNormal' | 'rectBig' | 'rectSmall' | 'round';
 
 type TitleStyleType = {
   color?: string;
@@ -18,12 +21,19 @@ interface CardShapeEProps {
   width: number;
   height: number;
   borderRadius?: number;
+  isImg :boolean;
 }
 
 type WrapperProps = Pick<CardShapeEProps, 'width'>;
 type TitleProps = Pick<TitleStyleType, 'bold' | 'color'>;
 
 const Card = ({ type, titleStyle, describe }: DefaultProps) => {
+
+
+  const [selectedImageData, setSelectedImageData] = useState<string | null>(null);
+  const getShapeStyle = (type: Shapes) => {
+
+
   const [isTitleEditing, setIsTitleEditing] = useState(false);
   const [title, setTitle] = useState(titleStyle?.text || '');
   const [titleFontWeight, setTitleFontWeight] = useState(400);
@@ -62,7 +72,17 @@ const Card = ({ type, titleStyle, describe }: DefaultProps) => {
     if (type === 'round') return { width: 157, height: 157, borderRadius: 100 };
     throw new Error(`유효하지 않은 type: ${type}`);
   };
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = (e.target.files as FileList)[0];
+
+    const url = URL.createObjectURL(file)
+
+    setSelectedImageData(url)
+  };
+
   
+
   const shapeStyleValues = getShapeStyle(type);
 
   const splitedDescribe = isEditing
@@ -73,13 +93,22 @@ const Card = ({ type, titleStyle, describe }: DefaultProps) => {
     ? <TextEditor initialText={title} onTextChange={handleTitleChange} placeholder="임시" />
     : <TITLE color={titleFontColor} bold={titleFontWeight === 700} fontWeight={titleFontWeight} fontSize={titleFontSize} fontColor={titleFontColor}>{title}</TITLE>;
 
+
   return (
+
     <WRAPPER width={shapeStyleValues.width}>
+
+      <CardInput onChange={handleImageChange} id="card" type='file'></CardInput>
       <CARDSHAPE
+      isImg={!!selectedImageData}
+      htmlFor='card' 
         borderRadius={shapeStyleValues.borderRadius}
         width={shapeStyleValues?.width}
         height={shapeStyleValues?.height}
-      ></CARDSHAPE>
+      >
+        <img src={selectedImageData?selectedImageData:''} alt='selectedImg'/>
+      </CARDSHAPE>
+
 
       {titleElement}
       <button className="editButton" onClick={isTitleEditing ? handleSave : () => setIsTitleEditing(true)}>{isTitleEditing ? "Save Title" : "Edit Title"}</button>
@@ -109,11 +138,25 @@ const WRAPPER = styled.div<WrapperProps>`
   
 `;
 
-const CARDSHAPE = styled.div<CardShapeEProps>`
+
+const CardInput = styled.input`
+  display: none;
+`
+
+const CARDSHAPE = styled.label<CardShapeEProps>`
   width: ${(props) => props.width + 'px'};
   height: ${(props) => props.height + 'px'};
   background-color: #f0f0f0;
   border-radius: ${(props) => props.borderRadius + '%'};
+
+  img{
+    object-fit: cover;
+    display: ${(props)=>props.isImg ? 'block':'none'};
+    width: 100%;
+    height: 100%;
+  border-radius: ${(props) => props.borderRadius + '%'};
+
+  }
 `;
 
 const TITLE = styled.h1<TitleProps & StyleProps>`
@@ -142,4 +185,7 @@ const DESCRIBE = styled.p<StyleProps>`
   }};
   line-height: 24px;
   text-align: left;
+
+
 `;
+

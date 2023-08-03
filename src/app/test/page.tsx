@@ -5,6 +5,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import LayoutModal from '@/compoenets/LayoutModal/LayoutModal';
 import Card from '@/compoenets/Cards/Card';
+
 const LayoutAndButton = styled.div<{ $isEmpty: boolean }>`
   display: flex;
   align-items: center;
@@ -45,6 +46,7 @@ export default function Home() {
   };
   return (
     <>
+      <IsEditDescribe>편집중...</IsEditDescribe>
       <section>
         {sectionData.map((section, key) => (
           <LayoutAndButton
@@ -68,4 +70,10 @@ export default function Home() {
   );
 }
 
-const MockInput = styled.input``;
+const IsEditDescribe = styled.div`
+  color: ${(props) => props.theme.colors.grayscale100};
+  font-size: 18px;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+`;

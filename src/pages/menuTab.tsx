@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Tab from '../compoenets/Tab';
-import Tab1Content from './Tab1Content';
-import Tab2Content from './Tab2Content';
+import TabLeftContent from './TableftContent';
+import TabRightContent from './TabRightContent';
 
 const AllContainer = styled.div`
   display: flex;
@@ -49,7 +49,7 @@ const MenuTab = () => {
         </ListWrap>
         <TabWrap>
           <Tab activeTab={activeTab} onClick={handleTabChange} />
-          {activeTab ? <Tab1Content /> : <Tab2Content />}
+          {activeTab ? <TabLeftContent /> : <TabRightContent />}
         </TabWrap>
       </HeaderWrap>
       

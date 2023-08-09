@@ -35,7 +35,10 @@
     
 프론트엔드 3명 
     
-<td align="center"><a href="[https://github.com/MAGHC](https://github.com/MAGHC)"><img src="https://avatars.githubusercontent.com/u/89845540?v=4" width="100px;" alt=""/><br /><sub><b>김정수(FE)</b></sub></a><br /></td>
-<td align="center"><a href="[https://github.com/johnwithsmile](https://github.com/johnwithsmile)"><img src="https://avatars.githubusercontent.com/u/93374751?v=4" width="100px;" alt=""/><br /><sub><b>김정동(FE)</b></sub></a><br /></td>
-<td align="center"><a href="[https://github.com/SeoJiWon1](https://github.com/SeoJiWon1)"><img src="https://avatars.githubusercontent.com/u/120435947?s=400&u=668f11620200ba0a608ef70f31a32bf4131c725c&v=4" width="100px;" alt=""/><br /><sub><b>서지원(FE)</b></sub></a><br /></td>
+<td align="center"><a href="[https://github.com/MAGHC](https://github.com/MAGHC)"><img src="https://avatars.githubusercontent.com/u/89845540?v=4" width="100px;" alt=""/>김정수(FE)<br/><br/></a></td>
+<br/>
+<td align="center"><a href="[https://github.com/johnwithsmile](https://github.com/johnwithsmile)"><img src="https://avatars.githubusercontent.com/u/93374751?v=4" width="100px;" alt=""/>김정동(FE)<br/><br/></a></td>
+<br/>
+<td align="center"><a href="[https://github.com/SeoJiWon1](https://github.com/SeoJiWon1)"><img src="https://avatars.githubusercontent.com/u/120435947?s=400&u=668f11620200ba0a608ef70f31a32bf4131c725c&v=4" width="100px;" alt=""/>서지원(FE)<br/><br/></a></td>
+<br/>
 <tr/>

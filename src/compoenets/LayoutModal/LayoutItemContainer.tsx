@@ -35,7 +35,8 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 457px;
+  /* width: 457px; 기존값 */
+  width: 300px;
   height: 152px;
   border-radius: 10px;
   background-color: #ffffff;

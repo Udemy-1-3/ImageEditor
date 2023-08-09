@@ -38,6 +38,6 @@ const Icon = ({
 
 export default Icon;
 
-const Wrapper = styled.div`
+const Wrapper = styled.span`
   cursor: pointer;
 `;

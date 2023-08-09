@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Tab from '../compoenets/Tab';
-import TabLeftContent from './TableftContent';
+import TabLeftContent from './TabLeftContent';
 import TabRightContent from './TabRightContent';
 
 const AllContainer = styled.div`

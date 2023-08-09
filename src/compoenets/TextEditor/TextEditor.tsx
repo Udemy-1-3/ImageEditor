@@ -12,58 +12,131 @@ const TextEditor: React.FC<TextEditorProps> = ({ initialText, onTextChange, plac
   const [fontWeight, setFontWeight] = useState(400);
   const [fontSize, setFontSize] = useState(16);
   const [fontColor, setFontColor] = useState('#000000');
+  const [fontStyle, setFontStyle] = useState<'normal' | 'italic'>('normal');
+  const [textDecoration, setTextDecoration] = useState<'none' | 'underline'>('none');
   const [editing, setEditing] = useState(false);
   
   useEffect(() => {
     setText(initialText);
   }, [initialText]);
 
-  const handleEditButtonClick = () => {
+  const handleBold = () => {
+    setFontWeight(fontWeight === 400 ? 700 : 400);
+  };
+
+  const handleUnderline = () => {
+    setTextDecoration(textDecoration === 'none' ? 'underline' : 'none');
+  };
+
+  const handleItalic = () => {
+    setFontStyle(fontStyle === 'normal' ? 'italic' : 'normal');
+  };
+
+  const handleSave = () => {
     setEditing(false);
     onTextChange(text, fontWeight, fontSize, fontColor);
   };
 
-  const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(event.target.value);
-  };
-
-  const handleFontWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFontWeight(parseInt(event.target.value, 10));
-  };
-
-  const handleFontSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFontSize(parseInt(event.target.value, 10));
-  };
-
-  const handleFontColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFontColor(event.target.value);
-  };
-
   return (
-    <div>
+    <EditorContainer editing={editing}>
       {editing ? (
         <>
-          <button onClick={handleEditButtonClick}>Save</button>
+          <StyledButton 
+            style={{fontWeight: fontWeight === 700 ? "bold" : "normal"}} 
+            onClick={handleBold}
+          >
+            Bold
+          </StyledButton>
+          <StyledButton 
+            style={{fontStyle: fontStyle}} 
+            onClick={handleItalic}
+          >
+            Italic
+          </StyledButton>
           <TEXTAREA
             value={text}
-            onChange={handleTextChange}
-            style={{ fontWeight, fontSize, color: fontColor }}
+            onChange={(e) => setText(e.target.value)}
+            style={{ fontWeight, fontSize, color: fontColor, textDecoration, fontStyle }}
             placeholder={placeholder}
           />
-          <input type="number" value={fontWeight} onChange={handleFontWeightChange} placeholder="Font weight" />
-          <input type="number" value={fontSize} onChange={handleFontSizeChange} placeholder="Font size" />
-          <input type="color" value={fontColor} onChange={handleFontColorChange} />
+          <SelectContainer>
+            <select value={fontSize} onChange={(e) => setFontSize(parseInt(e.target.value, 10))}>
+              <option value="10">10px</option>
+              <option value="13">13px</option>
+              <option value="18">18px</option>
+              <option value="24">24px</option>
+              <option value="32">32px</option>
+            </select>
+            <ColorPicker type="color" value={fontColor} onChange={(e) => setFontColor(e.target.value)} />
+            <SaveButton onClick={handleSave}>Save Title</SaveButton>
+          </SelectContainer>
         </>
       ) : (
-        <div onClick={() => setEditing(true)}>{text || placeholder}</div>
+        <PreviewText onClick={() => setEditing(true)} style={{ fontWeight, fontSize, color: fontColor, textDecoration, fontStyle }}>
+            {text || placeholder}
+        </PreviewText>
       )}
-    </div>
+    </EditorContainer>
   );
 };
 
-export default TextEditor;
+const EditorContainer = styled.div<{ editing: boolean }>`
+  border: 1px solid ${props => props.editing ? "#ccc" : "transparent"};
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px;
+`;
 
 const TEXTAREA = styled.textarea`
   width: 100%;
   height: 100px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 `;
+
+const StyledButton = styled.button`
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`;
+
+const SelectContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const ColorPicker = styled.input`
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+`;
+
+const SaveButton = styled.button`
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const PreviewText = styled.div`
+  cursor: pointer;
+`;
+export default TextEditor;

@@ -1,8 +1,9 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 interface TabProps {
-  active?: boolean;
+  activeTab: boolean;
+  onClick: () => void;
 }
 
 const TabContainer = styled.div`
@@ -10,7 +11,7 @@ const TabContainer = styled.div`
 `;
 
 const TabItem = styled.div`
-  width: 164px;
+  width: 620px;
   height: 64px;
   display: flex;
   align-items: center;
@@ -20,14 +21,14 @@ const TabItem = styled.div`
 `;
 
 const Tab1 = styled(TabItem)<TabProps>`
-  background: ${props => props.active ? '#EE7D00' : '#FFFFFF'};
-  border: solid 1px ${props => props.active ? '#EE7D00' : '#CCCCCC'};
+  background: ${props => props.activeTab ? '#EE7D00' : '#FFFFFF'};
+  border: solid 1px ${props => props.activeTab ? '#EE7D00' : '#CCCCCC'};
   border-radius: 10px 0 0 10px;
 `;
 
 const Tab2 = styled(TabItem)<TabProps>`
-  background: ${props => props.active ? '#EE7D00' : '#FFFFFF'};
-  border: solid 1px ${props => props.active ? '#EE7D00' : '#CCCCCC'};
+  background: ${props => props.activeTab ? '#EE7D00' : '#FFFFFF'};
+  border: solid 1px ${props => props.activeTab ? '#EE7D00' : '#CCCCCC'};
   border-radius: 0 10px 10px 0px;
 `;
 
@@ -41,19 +42,13 @@ const MenuText = styled.span<{ active?: boolean }>`
   color: ${props => props.active ? '#FFFFFF' : '#000000'};
 `;
 
-const Tab: React.FC = () => {
-  const [activeTab, setActiveTab] = React.useState(true);
-
-  const handleTabChange = () => {
-    setActiveTab((prevActive) => !prevActive);
-  };
-
+const Tab: React.FC<TabProps> = ({ activeTab, onClick }) => {
   return (
     <TabContainer>
-      <Tab1 active={activeTab} onClick={handleTabChange}>
+      <Tab1 activeTab={activeTab} onClick={onClick}>
         <MenuText active={activeTab}>메뉴 관리</MenuText>
       </Tab1>
-      <Tab2 active={!activeTab} onClick={handleTabChange}>
+      <Tab2 activeTab={!activeTab} onClick={onClick}>
         <MenuText active={!activeTab}>페이지 관리</MenuText>
       </Tab2>
     </TabContainer>

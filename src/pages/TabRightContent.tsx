@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import CheckBox from '@/compoenets/CheckBox';
 import Chip from '@/compoenets/Chip';
+import Link from 'next/link';
 
 const TabRightContentContainer = styled.div`
 `;
@@ -71,65 +72,77 @@ const ChipContainer = styled.div`
 `;
 
 const TabRightContent = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
-    const allItems = [
-        { name: "내게 맞는 북클럽 찾기", path: "/page/voucher-inno", menu: "웅진북클럽", update: "2022-09-23 16.35.09", manage: "Edit" },
-        { name: "웅진북클럽 전집", path: "/page/voucher-inno", menu: "웅진북클럽", update: "2022-09-23 16.35.09", manage: "Edit" },
-        { name: "웅진북클럽 화상관리", path: "/page/voucher-inno", menu: "웅진스마트올", update: "2022-09-23 16.35.09", manage: "Edit" },
-        { name: "웅진북클럽 곰돌이", path: "/page/voucher-inno", menu: "출판/e러닝", update: "2022-09-23 16.35.09", manage: "Edit" },
-        { name: "베베북클럽", path: "/page/voucher-inno", menu: "웅진스마트올", update: "2022-09-23 16.35.09", manage: "Edit" },
-        { name: "웅진북클럽 AI 독서케어", path: "/page/voucher-inno", menu: "출판/e러닝", update: "2022-09-23 16.35.09", manage: "Edit" },
-        { name: "슈퍼팟잉글리시", path: "/page/voucher-inno", menu: "웅진북클럽", update: "2022-09-23 16.35.09", manage: "Edit" },
-        { name: "북큐레이터 소개", path: "/page/voucher-inno", menu: "웅진스마트올", update: "2022-09-23 16.35.09", manage: "Edit" },
-    ];
+  const allItems = [
+    { name: "내게 맞는 북클럽 찾기", path: "/page/voucher-inno", menu: "웅진북클럽", update: "2022-09-23 16.35.09", manage: "Edit" },
+    { name: "웅진북클럽 전집", path: "/page/voucher-inno", menu: "웅진북클럽", update: "2022-09-23 16.35.09", manage: "Edit" },
+    { name: "웅진북클럽 화상관리", path: "/page/voucher-inno", menu: "웅진스마트올", update: "2022-09-23 16.35.09", manage: "Edit" },
+    { name: "웅진북클럽 곰돌이", path: "/page/voucher-inno", menu: "출판/e러닝", update: "2022-09-23 16.35.09", manage: "Edit" },
+    { name: "베베북클럽", path: "/page/voucher-inno", menu: "웅진스마트올", update: "2022-09-23 16.35.09", manage: "Edit" },
+    { name: "웅진북클럽 AI 독서케어", path: "/page/voucher-inno", menu: "출판/e러닝", update: "2022-09-23 16.35.09", manage: "Edit" },
+    { name: "슈퍼팟잉글리시", path: "/page/voucher-inno", menu: "웅진북클럽", update: "2022-09-23 16.35.09", manage: "Edit" },
+    { name: "북큐레이터 소개", path: "/page/voucher-inno", menu: "웅진스마트올", update: "2022-09-23 16.35.09", manage: "Edit" },
+  ];
 
-    
-    const filteredItems = allItems.filter(item => {
-        
-        return item.name.includes(searchTerm) || item.path.includes(searchTerm) || item.menu.includes(searchTerm);
-    });
 
-    return (
-        <TabRightContentContainer>
-            <SearchContainer>
-                <SearchInput
-                    type="text"
-                    placeholder="페이지명"
-                    value={searchTerm}
-                    onChange={e => setSearchTerm(e.target.value)}
-                />
-            </SearchContainer>
-            <Table>
-                <thead>
-                    <TableRow>
-                        <CheckBoxHeader />
-                        <TableHeader>페이지명</TableHeader>
-                        <TableHeader>페이지 경로</TableHeader>
-                        <TableHeader>메뉴</TableHeader>
-                        <TableHeader>업데이트 일시</TableHeader>
-                        <TableHeader>관리</TableHeader>
-                    </TableRow>
-                </thead>
-                <tbody>
-                    {filteredItems.map(item => (
-                        <TableRow key={item.name}>
-                            <CheckBoxCell><CheckBox /></CheckBoxCell> 
-                            <TableCell>{item.name}</TableCell>
-                            <TableCell>{item.path}</TableCell>
-                            <TableCell>
-                                <ChipContainer>
-                                <Chip text={item.menu} href={`/menu/${item.menu}`} color="#FFFFFF" />
-                                </ChipContainer>
-                            </TableCell>
-                            <TableCell>{item.update}</TableCell>
-                            <TableCell>{item.manage}</TableCell>
-                        </TableRow>
-                    ))}
-                </tbody>
-            </Table>
-        </TabRightContentContainer>
-    );
+  const filteredItems = allItems.filter(item => {
+
+    return item.name.includes(searchTerm) || item.path.includes(searchTerm) || item.menu.includes(searchTerm);
+  });
+
+  return (
+    <TabRightContentContainer>
+      <SearchContainer>
+        <SearchInput
+          type="text"
+          placeholder="페이지명"
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+      </SearchContainer>
+      <Table>
+        <thead>
+          <TableRow>
+            <CheckBoxHeader />
+            <TableHeader>페이지명</TableHeader>
+            <TableHeader>페이지 경로</TableHeader>
+            <TableHeader>메뉴</TableHeader>
+            <TableHeader>업데이트 일시</TableHeader>
+            <TableHeader>관리</TableHeader>
+          </TableRow>
+        </thead>
+        <tbody>
+          {filteredItems.map(item => (
+            <TableRow key={item.name}>
+              <CheckBoxCell><CheckBox /></CheckBoxCell>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.path}</TableCell>
+              <TableCell>
+                <ChipContainer>
+                  <Chip text={item.menu} href={`/menu/${item.menu}`} color="#FFFFFF" />
+                </ChipContainer>
+              </TableCell>
+              <TableCell>{item.update}</TableCell>
+              <TableCell>
+                <Link href="/test">
+                  <a>Edit</a> {/* 'a' 태그를 사용하면 스타일링을 쉽게 적용할 수 있습니다. */}
+                </Link>
+              </TableCell>
+            </TableRow>
+          ))}
+        </tbody>
+        <tbody>
+          {filteredItems.map(item => (
+            <TableRow key={item.name}>
+              {/* 나머지 셀 */}
+
+            </TableRow>
+          ))}
+        </tbody>
+      </Table>
+    </TabRightContentContainer>
+  );
 };
 
 export default TabRightContent;

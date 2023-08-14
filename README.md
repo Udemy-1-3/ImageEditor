@@ -35,12 +35,14 @@
         </a><br />
         <sub><b>김정수(FE)</b></sub>
     </td>
+    <br/>
     <td align="center">
         <a href="https://github.com/johnwithsmile">
             <img src="https://avatars.githubusercontent.com/u/93374751?v=4" width="100px;" alt=""/>
         </a><br />
         <sub><b>김정동(FE)</b></sub>
     </td>
+    <br/>
     <td align="center">
         <a href="https://github.com/SeoJiWon1">
             <img src="https://avatars.githubusercontent.com/u/120435947?s=400&u=668f11620200ba0a608ef70f31a32bf4131c725c&v=4" width="100px;" alt=""/>
